@@ -2,7 +2,7 @@ import 'package:projeto_flutter/common/errors/errors_classes.dart';
 import 'package:projeto_flutter/common/patterns/result.dart';
 import 'package:projeto_flutter/data/services/local_storage_contract.dart';
 import 'package:projeto_flutter/domain/entities/studant_info_entity.dart';
-import 'package:projeto_flutter/helper/studente_fake_repository.dart';
+import 'package:projeto_flutter/helper/student_fake_repository.dart';
 
 class FakeDbService implements LocalStorageContract {
   StudentFakeApiDataBase fakeDB = StudentFakeApiDataBase();
