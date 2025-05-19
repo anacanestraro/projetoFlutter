@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage>
     _scaleAnimation = Tween<double>(
       begin: 1.0,
       end: 0.9,
-    ).animate(CurrentAnimation(
+    ).animate(CurvedAnimation(
       parent: _animationController,
       curve: Curves.easeInOut,
     ));
@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage>
     setState(() {
       _isEditing = !_isEditing;
       if (_isEditing) {
-        _animationController.foward();
+        _animationController.forward();
       } else {
         _animationController.reverse();
       }
@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage>
           'Cartão do Estudante',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        actions: [
+        actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.edit),
             onPressed: () {},
@@ -102,6 +102,14 @@ class _HomePageState extends State<HomePage>
                 color: theme.colorScheme.tertiary.withOpacity(0.1),
                 shape:BoxShape.circle,
               ),
+            ),
+          ),
+          SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(height: 20),
+              ],
             ),
           ),
         ]

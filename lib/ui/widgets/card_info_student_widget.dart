@@ -36,17 +36,123 @@ class StudentCard extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomLeft,
-          colors: [
-            theme.colorScheme.primary,
-            theme.colorScheme.inverseSurface,
-          ]
+          colors: [theme.colorScheme.primary, theme.colorScheme.inverseSurface],
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors 
-          )
-        ]
+            color: Colors.black.withOpacity(0.2),
+            spreadRadius: 1,
+            blurRadius: 8,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
+      child: isFront ? _buildCardFront(context) : _buildCardBack(context),
+    );
+  }
+
+  Widget _buildCardFront(BuildContext context) {
+    final theme = Theme.of(context);
+    var colorText = Colors.white;
+
+    return Padding(
+      padding: const EdgeInsets.all(24.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'DADOS DO ESTUDANTE',
+                style: TextStyle(
+                  color: colorText,
+                  fontSize: 14,
+                  letterSpacing: 1.5,
+                ),
+              ),
+              Icon(Icons.school, color: colorText, size: 28),
+            ],
+          ),
+          const Spacer(),
+          Text(
+            student.name,
+            style: TextStyle(
+              color: theme.colorScheme.tertiary,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 20),
+          _buildInfoRow(Icons.cake, 'Idade: ${student.age}', colorText),
+          const SizedBox(height: 10),
+          _buildInfoRow(Icons.cake, student.email, colorText),
+          const Spacer(),
+          Center(
+            child: Text(
+              'Vire para o verso.',
+              style: TextStyle(color: colorText.withOpacity(0.7), fontSize: 14),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCardBack(BuildContext context) {
+    var colorText = Colors.white;
+
+    return Padding(
+      padding: const EdgeInsets.all(24.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Informações adicionais',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: colorText,
+              fontSize: 18,
+              letterSpacing: 1.5,
+            ),
+          ),
+          const SizedBox(height: 20),
+          _buildInfoRow(Icons.location_on, 'Endereço', colorText),
+          const SizedBox(height: 8),
+          Padding(
+            padding: const EdgeInsets.only(left: 32.0),
+            child: Text(
+              student.address,
+              style: TextStyle(color: colorText, fontSize: 16),
+            ),
+          ),
+          const SizedBox(height: 20),
+          _buildInfoRow(Icons.phone, student.phone, colorText),
+          const Spacer(),
+          Center(
+            child: Text(
+              'Ver frente',
+              style: TextStyle(color: colorText.withOpacity(0.7), fontSize: 14),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Row _buildInfoRow(IconData icon, String text, [Color? colorText]) {
+    return Row(
+      children: [
+        Icon(icon, color: colorText, size: 20),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Text(
+            text,
+            style: TextStyle(color: colorText, fontSize: 16),
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
     );
   }
 }
