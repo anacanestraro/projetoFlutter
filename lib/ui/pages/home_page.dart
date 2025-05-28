@@ -20,6 +20,7 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
+
     viewController = injector.get<HomePageController>();
     viewController.load.execute();
 
@@ -28,13 +29,9 @@ class _HomePageState extends State<HomePage>
       vsync: this,
     );
 
-    _scaleAnimation = Tween<double>(
-      begin: 1.0,
-      end: 0.9,
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.easeInOut,
-    ));
+    _scaleAnimation = Tween<double>(begin: 1.0, end: 0.9).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
+    );
   }
 
   @override
@@ -56,7 +53,6 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
-
     final theme = Theme.of(context);
 
     return Scaffold(
@@ -69,12 +65,12 @@ class _HomePageState extends State<HomePage>
           IconButton(
             icon: const Icon(Icons.edit),
             onPressed: () {},
-            tooltip: 'Edit Information',
+            tooltip: 'Edit information',
           ),
           IconButton(
             icon: const Icon(Icons.refresh),
             onPressed: () {},
-            tooltip: 'Reset Information',
+            tooltip: 'Reset information',
           ),
         ],
       ),
@@ -84,23 +80,23 @@ class _HomePageState extends State<HomePage>
             top: -80,
             right: -70,
             child: Container(
-              width:250,
-              height:250,
+              width: 250,
+              height: 250,
               decoration: BoxDecoration(
                 color: theme.colorScheme.tertiary.withOpacity(0.1),
-                shape:BoxShape.circle,
+                shape: BoxShape.circle,
               ),
             ),
           ),
           Positioned(
-            bottom: -80,
-            left: -70,
+            bottom: -70,
+            left: -80,
             child: Container(
-              width:250,
-              height:250,
+              width: 250,
+              height: 250,
               decoration: BoxDecoration(
-                color: theme.colorScheme.tertiary.withOpacity(0.1),
-                shape:BoxShape.circle,
+                color: theme.colorScheme.secondary.withOpacity(0.1),
+                shape: BoxShape.circle,
               ),
             ),
           ),
@@ -109,10 +105,11 @@ class _HomePageState extends State<HomePage>
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(height: 20),
+
               ],
             ),
           ),
-        ]
+        ],
       ),
     );
   }

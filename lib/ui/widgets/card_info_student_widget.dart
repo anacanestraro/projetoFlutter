@@ -2,11 +2,11 @@ import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/domain/entities/studant_info_entity.dart';
 
-class StudentCard extends StatelessWidget {
+class StudantCard extends StatelessWidget {
   final StudentInfoEntity student;
   final GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
 
-  StudentCard({super.key, required this.student});
+  StudantCard({super.key, required this.student});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,6 @@ class StudentCard extends StatelessWidget {
 
   Container _buildCard(BuildContext context, {bool isFront = true}) {
     final theme = Theme.of(context);
-
     return Container(
       width: double.infinity,
       height: 280,
@@ -35,7 +34,7 @@ class StudentCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         gradient: LinearGradient(
           begin: Alignment.topLeft,
-          end: Alignment.bottomLeft,
+          end: Alignment.bottomRight,
           colors: [theme.colorScheme.primary, theme.colorScheme.inverseSurface],
         ),
         boxShadow: [
@@ -64,7 +63,7 @@ class StudentCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'DADOS DO ESTUDANTE',
+                'Dados do estudante',
                 style: TextStyle(
                   color: colorText,
                   fontSize: 14,
@@ -86,11 +85,11 @@ class StudentCard extends StatelessWidget {
           const SizedBox(height: 20),
           _buildInfoRow(Icons.cake, 'Idade: ${student.age}', colorText),
           const SizedBox(height: 10),
-          _buildInfoRow(Icons.cake, student.email, colorText),
+          _buildInfoRow(Icons.email, student.email, colorText),
           const Spacer(),
           Center(
             child: Text(
-              'Vire para o verso.',
+              'Vire para o Verso',
               style: TextStyle(color: colorText.withOpacity(0.7), fontSize: 14),
             ),
           ),
@@ -108,9 +107,8 @@ class StudentCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Informações adicionais',
+            'INFORMAÇÕES ADICIONAIS',
             style: TextStyle(
-              fontWeight: FontWeight.bold,
               color: colorText,
               fontSize: 18,
               letterSpacing: 1.5,
@@ -131,7 +129,7 @@ class StudentCard extends StatelessWidget {
           const Spacer(),
           Center(
             child: Text(
-              'Ver frente',
+              'Vire Frente',
               style: TextStyle(color: colorText.withOpacity(0.7), fontSize: 14),
             ),
           ),
